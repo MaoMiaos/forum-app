@@ -4,6 +4,19 @@ import Home from './../pages/home'
 import Account from './../pages/account'
 import React from 'react'
 import Entry from "@/pages/entry";
+import {globalConfig} from "@/globalConfig";
+
+//路由守卫
+export function PrivateRoute(props){
+    // 判断localStorage是否有登录用户信息，如果没有则跳转登录页
+    return window.localStorage.getItem(globalConfig.SESSION_LOGIN_INFO) ? (
+        props.children
+    ) : (
+        <Navigate to="/login" />
+    )
+}
+
+
 
 // 全局路由
 export const globalRouters = createHashRouter([

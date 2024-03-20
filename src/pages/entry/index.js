@@ -4,6 +4,7 @@ import Header from '@/components/header'
 import './entry.scss'
 import {useSelector} from "react-redux";
 import {ConfigProvider, theme} from "antd";
+import {PrivateRoute} from "@/router";
 
 function Entry() {
 
@@ -30,6 +31,7 @@ function Entry() {
     }
 
     return (
+        <PrivateRoute>
         <ConfigProvider theme={antdTheme}>
         <div className="M-entry">
             <Header title={location.pathname}/>
@@ -39,6 +41,7 @@ function Entry() {
             </div>
         </div>
         </ConfigProvider>
+        </PrivateRoute>
     )
 }
 

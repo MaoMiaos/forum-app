@@ -13,7 +13,7 @@ export const goto = (path) => {
 //开发环境地址
 let API_DOMAIN = '/api/'
 if (process.env.NODE_ENV === 'production') {
-    API_DOMAIN = 'http://localhost:8080/api/'
+    API_DOMAIN = 'http://localhost:3000/api/'
 }
 export const SESSION_LOGIN_INFO =  globalConfig.SESSION_LOGIN_INFO
 
@@ -110,7 +110,8 @@ export function getLocalLoginInfo() {
 export function logout() {
     // 清除localStorage中的登录信息
     window.localStorage.removeItem(SESSION_LOGIN_INFO)
-    //跳转Login界面
+    // 跳转至Login页面
+    console.log("走啦")
     history.push('/login')
 }
 
