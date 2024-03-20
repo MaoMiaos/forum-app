@@ -1,7 +1,9 @@
 import { createHashRouter, Navigate } from 'react-router-dom'
 import Login from './../pages/login'
-import Home from './../pages/login'
-import Account from './../pages/login'
+import Home from './../pages/home'
+import Account from './../pages/account'
+import React from 'react'
+import Entry from "@/pages/entry";
 
 // 全局路由
 export const globalRouters = createHashRouter([
@@ -10,20 +12,33 @@ export const globalRouters = createHashRouter([
         path: '/login',
         element: <Login />,
     },
-    // 精确匹配"/home"，跳转Home页面
-    {
-        path: '/home',
-        element: <Home />,
-    },
-    // 精确匹配"/account"，跳转Account页面
-    {
-        path: '/account',
-        element: <Account />,
-    },
     // 如果URL没有"#路由"，跳转Home页面
     {
         path: '/',
-        element: <Home />,
+        element: (
+            <Entry />),
+        children:[
+            {
+                // 精确匹配"/home"，跳转Home页面
+                path: '/home',
+                element: <Home />,
+            },
+            {
+                // 精确匹配"/account"，跳转Account页面
+                path: '/account',
+                element: <Account />,
+            },
+            {
+                // 如果URL没有"#路由"，跳转Home页面
+                path: '/',
+                element: <Navigate to="/home" />,
+            },
+            {
+                // 未匹配，，跳转Login页面
+                path: '*',
+                element: <Navigate to="/login" />,
+            },
+        ]
     },
     // 未匹配，，跳转Login页面
     {
